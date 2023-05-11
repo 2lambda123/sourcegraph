@@ -21,10 +21,20 @@ func TestRepoCommits(t *testing.T) {
 	require.NoError(t, err, "failed to insert repo")
 
 	repoID := int32(1)
-	data := map[string]string{
-		"commit1": "123",
-		"commit2": "124",
-		"commit3": "125",
+
+	data := []types.PerforceChangelist{
+		{
+			CommitSHA:    "commit1",
+			ChangelistID: "123",
+		},
+		{
+			CommitSHA:    "commit2",
+			ChangelistID: "124",
+		},
+		{
+			CommitSHA:    "commit3",
+			ChangelistID: "125",
+		},
 	}
 
 	s := RepoCommitsWith(logger, db)

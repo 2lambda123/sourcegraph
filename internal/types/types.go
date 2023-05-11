@@ -2021,3 +2021,8 @@ const (
 	AccessRequestStatusApproved AccessRequestStatus = "APPROVED"
 	AccessRequestStatusRejected AccessRequestStatus = "REJECTED"
 )
+
+type PerforceChangelist struct {
+	CommitSHA    api.CommitID
+	ChangelistID string
+}

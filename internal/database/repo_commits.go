@@ -17,7 +17,7 @@ type RepoCommitsStore interface {
 	Transact(context.Context) (RepoCommitsStore, error)
 	With(basestore.ShareableStore) RepoCommitsStore
 
-	BatchInsertCommitSHAsWithPerforceChangelistID(context.Context, api.RepoID, map[string]string) error
+	BatchInsertCommitSHAsWithPerforceChangelistID(context.Context, api.RepoID, []types.PerforceChangelist) error
 	GetLatestForRepo(ctx context.Context, repoID api.RepoID) (*types.RepoCommit, error)
 }
 
@@ -48,7 +48,7 @@ func (s *repoCommitsStore) Transact(ctx context.Context) (RepoCommitsStore, erro
 	return &repoCommitsStore{logger: s.logger, Store: txBase}, nil
 }
 
-func (s *repoCommitsStore) BatchInsertCommitSHAsWithPerforceChangelistID(ctx context.Context, repo_id api.RepoID, data map[string]string) error {
+func (s *repoCommitsStore) BatchInsertCommitSHAsWithPerforceChangelistID(ctx context.Context, repo_id api.RepoID, commitsMap []types.PerforceChangelist) error {
 	tx, err := s.Store.Transact(ctx)
 	if err != nil {
 		return err
@@ -56,12 +56,12 @@ func (s *repoCommitsStore) BatchInsertCommitSHAsWithPerforceChangelistID(ctx con
 	defer func() { err = tx.Done(err) }()
 
 	inserter := batch.NewInserter(ctx, tx.Handle(), "repo_commits", batch.MaxNumPostgresParameters, "repo_id", "commit_sha", "perforce_changelist_id")
-	for commitSHA, perforceChangelistID := range data {
+	for _, item := range commitsMap {
 		if err := inserter.Insert(
 			ctx,
 			int32(repo_id),
-			commitSHA,
-			perforceChangelistID,
+			item.CommitSHA,
+			item.ChangelistID,
 		); err != nil {
 			return err
 		}
