@@ -40,7 +40,7 @@ export interface Client {
             prefilledOptions?: PrefilledOptions
         }
     ) => Promise<void>
-    reset: () => void
+    reset: () => Promise<void>
     codebaseContext: CodebaseContext
 }
 
@@ -75,9 +75,9 @@ export async function createClient({
 
     let isMessageInProgress = false
 
-    const sendTranscript = (): void => {
+    const sendTranscript = async (): Promise<void> => {
         if (isMessageInProgress) {
-            const messages = transcript.toChat()
+            const messages = await transcript.toChat()
             setTranscript(transcript)
             setMessageInProgress(messages[messages.length - 1])
         } else {
@@ -111,35 +111,35 @@ export async function createClient({
         isMessageInProgress = true
         transcript.addInteraction(interaction)
 
-        sendTranscript()
+        await sendTranscript()
 
         const prompt = await transcript.toPrompt(getPreamble(config.codebase))
         const responsePrefix = interaction.getAssistantMessage().prefix ?? ''
         let rawText = ''
 
         chatClient.chat(prompt, {
-            onChange(_rawText) {
+            async onChange(_rawText) {
                 rawText = _rawText
 
                 const text = reformatBotMessage(rawText, responsePrefix)
                 transcript.addAssistantResponse(text)
 
-                sendTranscript()
+                await sendTranscript()
             },
-            onComplete() {
+            async onComplete() {
                 isMessageInProgress = false
 
                 const text = reformatBotMessage(rawText, responsePrefix)
                 transcript.addAssistantResponse(text)
-                sendTranscript()
+                await sendTranscript()
             },
-            onError(error) {
+            async onError(error) {
                 // Display error message as assistant response
                 transcript.addErrorAsAssistantResponse(
                     `<div class="cody-chat-error"><span>Request failed: </span>${error}</div>`
                 )
                 isMessageInProgress = false
-                sendTranscript()
+                await sendTranscript()
                 console.error(`Completion request failed: ${error}`)
             },
         })
@@ -156,10 +156,10 @@ export async function createClient({
             return executeRecipe('chat-question', { humanChatInput: text })
         },
         executeRecipe,
-        reset() {
+        async reset() {
             isMessageInProgress = false
             transcript.reset()
-            sendTranscript()
+            await sendTranscript()
         },
         codebaseContext,
     }

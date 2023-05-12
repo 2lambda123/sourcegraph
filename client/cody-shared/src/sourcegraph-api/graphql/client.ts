@@ -38,6 +38,8 @@ interface EmbeddingsSearchResponse {
 interface LogEventResponse {}
 
 export interface EmbeddingsSearchResult {
+    repoName: string
+    revision: string
     fileName: string
     startLine: number
     endLine: number

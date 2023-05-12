@@ -1,4 +1,4 @@
-import { ContextMessage } from '../../codebase-context/messages'
+import { ContextMessage, ContextFile } from '../../codebase-context/messages'
 import { PromptMixin } from '../../prompt/prompt-mixin'
 import { Message } from '../../sourcegraph-api'
 
@@ -12,7 +12,7 @@ export interface InteractionJSON {
 }
 
 export class Interaction {
-    private cachedContextFileNames: string[] = []
+    private cachedContextFiles: ContextFile[] = []
     private context: Promise<ContextMessage[]>
     public readonly timestamp: string
 
@@ -24,12 +24,20 @@ export class Interaction {
     ) {
         this.timestamp = timestamp
         this.context = context.then(messages => {
-            const contextFileNames = messages
-                .map(message => message.fileName)
-                .filter((fileName): fileName is string => !!fileName)
+            const contextFilesMap = messages.reduce((map, { file }) => {
+                if (!file?.fileName) {
+                    return map
+                }
+                map[`${file.repoName || 'repo'}@${file?.revision || 'HEAD'}/${file.fileName}`] = file
+                return map
+            }, {} as { [key: string]: ContextFile })
 
             // Cache the context files so we don't have to block the UI when calling `toChat` by waiting for the context to resolve.
-            this.cachedContextFileNames = [...new Set<string>(contextFileNames)].sort((a, b) => a.localeCompare(b))
+            this.cachedContextFiles = [
+                ...Object.keys(contextFilesMap)
+                    .sort((a, b) => a.localeCompare(b))
+                    .map((key: string) => contextFilesMap[key]),
+            ]
 
             return messages
         })
@@ -59,8 +67,9 @@ export class Interaction {
         return messages.map(toPromptMessage)
     }
 
-    public toChat(): ChatMessage[] {
-        return [this.humanMessage, { ...this.assistantMessage, contextFiles: this.cachedContextFileNames }]
+    public async toChat(): Promise<ChatMessage[]> {
+        await this.context
+        return [this.humanMessage, { ...this.assistantMessage, contextFiles: this.cachedContextFiles }]
     }
 
     public async toJSON(): Promise<InteractionJSON> {

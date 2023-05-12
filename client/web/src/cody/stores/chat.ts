@@ -185,7 +185,7 @@ export const useChatStoreState = create<CodyChatStore>((set, get): CodyChatStore
             return
         }
 
-        const messages = transcript.toChat()
+        const messages = await transcript.toChat()
         if (client.isMessageInProgress) {
             messages.pop()
         }
@@ -231,7 +231,7 @@ export const useChatStoreState = create<CodyChatStore>((set, get): CodyChatStore
             config,
             editor,
             onEvent,
-            transcript: initialTranscript.toChat(),
+            transcript: await initialTranscript.toChat(),
             transcriptId: initialTranscript.isEmpty ? null : initialTranscript.id,
             transcriptHistory,
         })
@@ -272,7 +272,7 @@ export const useChatStoreState = create<CodyChatStore>((set, get): CodyChatStore
         }
 
         if (oldClient && !isErrorLike(oldClient)) {
-            oldClient.reset()
+            await oldClient.reset()
         }
 
         const transcriptHistory = fetchTranscriptHistory()
@@ -282,7 +282,7 @@ export const useChatStoreState = create<CodyChatStore>((set, get): CodyChatStore
         }
 
         const transcript = Transcript.fromJSON(transcriptJSONFromHistory)
-        const messages = transcript.toChat()
+        const messages = await transcript.toChat()
 
         try {
             const client = await createClient({
