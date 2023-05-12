@@ -2,12 +2,14 @@ package database
 
 import (
 	"context"
+	"database/sql"
 	"testing"
 
 	"github.com/sourcegraph/log/logtest"
 	"github.com/sourcegraph/sourcegraph/internal/api"
 	"github.com/sourcegraph/sourcegraph/internal/database/dbtest"
 	"github.com/sourcegraph/sourcegraph/internal/types"
+	"github.com/sourcegraph/sourcegraph/lib/errors"
 	"github.com/stretchr/testify/require"
 )
 
@@ -75,20 +77,29 @@ func TestRepoCommits(t *testing.T) {
 	})
 
 	t.Run("GetLatestForRepo", func(t *testing.T) {
-		repoCommit, err := s.GetLatestForRepo(ctx, api.RepoID(repoID))
-		require.NoError(t, err, "unexpected error in GetLatestForRepo")
-		require.NotNil(t, repoCommit, "repoCommit was not expected to be nil")
-		require.Equal(
-			t,
-			&types.RepoCommit{
-				ID:                   3,
-				RepoID:               api.RepoID(repoID),
-				CommitSHA:            "commit3",
-				PerforceChangelistID: "125",
-			},
-			repoCommit,
-			"repoCommit row is not as expected",
-		)
+		t.Run("existing repo", func(t *testing.T) {
+			repoCommit, err := s.GetLatestForRepo(ctx, api.RepoID(repoID))
+			require.NoError(t, err, "unexpected error in GetLatestForRepo")
+			require.NotNil(t, repoCommit, "repoCommit was not expected to be nil")
+			require.Equal(
+				t,
+				&types.RepoCommit{
+					ID:                   3,
+					RepoID:               api.RepoID(repoID),
+					CommitSHA:            "commit3",
+					PerforceChangelistID: "125",
+				},
+				repoCommit,
+				"repoCommit row is not as expected",
+			)
+		})
+
+		t.Run("non existing repo", func(t *testing.T) {
+			repoCommit, err := s.GetLatestForRepo(ctx, api.RepoID(2))
+			require.Error(t, err)
+			require.True(t, errors.Is(err, sql.ErrNoRows))
+			require.Equal(t, &types.RepoCommit{}, repoCommit)
+		})
 	})
 
 }
