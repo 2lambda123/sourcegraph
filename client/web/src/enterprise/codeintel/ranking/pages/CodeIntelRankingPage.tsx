@@ -90,6 +90,7 @@ interface ProgressProps {
 
 const Progress: FunctionComponent<ProgressProps> = ({ progress }) => (
     <span>
+        ({Math.floor(progress.total === 0 ? 100 : (progress.processed / progress.total) * 100 * 100) / 100}%){' '}
         {progress.processed} of {progress.total} records processed; started <Timestamp date={progress.startedAt} />{' '}
         {progress.completedAt && (
             <>
