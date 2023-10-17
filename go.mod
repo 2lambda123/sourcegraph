@@ -31,7 +31,7 @@ require (
 	github.com/containerd/containerd v1.4.0 // indirect
 	github.com/coreos/go-oidc v2.2.1+incompatible
 	github.com/coreos/go-semver v0.3.0
-	github.com/crewjam/saml v0.4.1
+	github.com/crewjam/saml v0.4.14
 	github.com/davecgh/go-spew v1.1.1
 	github.com/daviddengcn/go-colortext v1.0.0
 	github.com/derision-test/glock v0.0.0-20210316032053-f5b74334bb29
@@ -67,7 +67,7 @@ require (
 	github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e
 	github.com/gomodule/oauth1 v0.0.0-20181215000758-9a59ed3b0a84
 	github.com/gomodule/redigo v2.0.0+incompatible
-	github.com/google/go-cmp v0.5.5
+	github.com/google/go-cmp v0.5.9
 	github.com/google/go-github v17.0.0+incompatible
 	github.com/google/go-github/v28 v28.1.1
 	github.com/google/go-github/v31 v31.0.0
@@ -131,7 +131,7 @@ require (
 	github.com/prometheus/common v0.15.0
 	github.com/rainycape/unidecode v0.0.0-20150907023854-cb7f23ec59be
 	github.com/russellhaering/gosaml2 v0.6.0
-	github.com/russellhaering/goxmldsig v1.1.1-0.20201210191726-3541f5e554ee
+	github.com/russellhaering/goxmldsig v1.3.0
 	github.com/russross/blackfriday v2.0.0+incompatible // indirect
 	github.com/schollz/progressbar/v3 v3.5.0
 	github.com/segmentio/fasthash v1.0.3
@@ -156,8 +156,7 @@ require (
 	github.com/sourcegraph/sourcegraph/lib v0.0.0-00010101000000-000000000000
 	github.com/sourcegraph/syntaxhighlight v0.0.0-20170531221838-bd320f5d308e // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect
-	github.com/stretchr/objx v0.3.0 // indirect
-	github.com/stretchr/testify v1.7.0
+	github.com/stretchr/testify v1.8.1
 	github.com/stripe/stripe-go v70.15.0+incompatible
 	github.com/temoto/robotstxt v1.1.1
 	github.com/throttled/throttled/v2 v2.7.1
@@ -172,22 +171,20 @@ require (
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/xeonx/timeago v1.0.0-rc4
 	github.com/xhit/go-str2duration/v2 v2.0.0
-	github.com/zenazn/goji v1.0.1 // indirect
 	go.mongodb.org/mongo-driver v1.4.1 // indirect
 	go.uber.org/atomic v1.7.0
 	go.uber.org/automaxprocs v1.3.0
 	go.uber.org/ratelimit v0.2.0
-	golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a
-	golang.org/x/net v0.0.0-20210614182718-04defd469f4e
+	golang.org/x/crypto v0.14.0
+	golang.org/x/net v0.10.0
 	golang.org/x/oauth2 v0.0.0-20210514164344-f6687ab2804c
-	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
-	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c
+	golang.org/x/sync v0.1.0
+	golang.org/x/sys v0.13.0
 	golang.org/x/time v0.0.0-20200630173020-3af7569d3a1e
-	golang.org/x/tools v0.1.5
+	golang.org/x/tools v0.6.0
 	google.golang.org/api v0.46.0
 	google.golang.org/genproto v0.0.0-20210517163617-5e0236093d7a
 	google.golang.org/protobuf v1.26.0
-	gopkg.in/check.v1 v1.0.0-20200902074654-038fdea0a05b // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 	gopkg.in/square/go-jose.v2 v2.5.1 // indirect
 	gopkg.in/src-d/go-git.v4 v4.13.1
