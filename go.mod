@@ -3,9 +3,10 @@ module github.com/sourcegraph/sourcegraph
 go 1.16
 
 require (
-	cloud.google.com/go v0.82.0
-	cloud.google.com/go/pubsub v1.3.1
-	cloud.google.com/go/storage v1.10.0
+	cloud.google.com/go/kms v1.12.1
+	cloud.google.com/go/profiler v0.4.0
+	cloud.google.com/go/pubsub v1.32.0
+	cloud.google.com/go/storage v1.30.1
 	github.com/Masterminds/semver v1.5.0
 	github.com/NYTimes/gziphandler v1.1.1
 	github.com/OneOfOne/xxhash v1.2.8 // indirect
@@ -23,11 +24,10 @@ require (
 	github.com/aws/smithy-go v1.3.1
 	github.com/beevik/etree v1.1.0
 	github.com/boj/redistore v0.0.0-20180917114910-cd5dcc76aeff
-	github.com/certifi/gocertifi v0.0.0-20200211180108-c7c1fbc02894 // indirect
 	github.com/cockroachdb/errors v1.8.4
 	github.com/cockroachdb/redact v1.0.9 // indirect
 	github.com/cockroachdb/sentry-go v0.6.1-cockroachdb.2
-	github.com/containerd/containerd v1.4.0 // indirect
+	github.com/containerd/containerd v1.6.26 // indirect
 	github.com/coreos/go-oidc v2.2.1+incompatible
 	github.com/coreos/go-semver v0.3.0
 	github.com/crewjam/saml v0.4.14
@@ -41,7 +41,6 @@ require (
 	github.com/dineshappavoo/basex v0.0.0-20170425072625-481a6f6dc663
 	github.com/dnaeon/go-vcr v1.0.1
 	github.com/efritz/pentimento v0.0.0-20190429011147-ade47d831101
-	github.com/evanphx/json-patch v4.9.0+incompatible // indirect
 	github.com/fatih/color v1.11.0
 	github.com/fatih/structs v1.1.0
 	github.com/felixge/fgprof v0.9.1
@@ -70,10 +69,8 @@ require (
 	github.com/google/go-github/v28 v28.1.1
 	github.com/google/go-github/v31 v31.0.0
 	github.com/google/go-querystring v1.0.0
-	github.com/google/gofuzz v1.1.0 // indirect
-	github.com/google/uuid v1.2.0
+	github.com/google/uuid v1.3.0
 	github.com/google/zoekt v0.0.0-20200720095054-b48e35d16e83
-	github.com/googleapis/gnostic v0.4.0 // indirect
 	github.com/gopherjs/gopherjs v0.0.0-20200217142428-fce0ec30dd00 // indirect
 	github.com/gorilla/context v1.1.1
 	github.com/gorilla/csrf v1.7.0
@@ -89,7 +86,7 @@ require (
 	github.com/graphql-go/graphql v0.7.9
 	github.com/gregjones/httpcache v0.0.0-20190611155906-901d90724c79
 	github.com/hashicorp/go-hclog v0.14.1 // indirect
-	github.com/hashicorp/go-multierror v1.1.0
+	github.com/hashicorp/go-multierror v1.1.1
 	github.com/hashicorp/go-retryablehttp v0.6.7 // indirect
 	github.com/hashicorp/golang-lru v0.5.4
 	github.com/hexops/autogold v1.3.0
@@ -100,7 +97,7 @@ require (
 	github.com/jmoiron/sqlx v1.2.1-0.20190826204134-d7d95172beb5
 	github.com/joho/godotenv v1.3.0
 	github.com/jordan-wright/email v4.0.1-0.20200824153738-3f5bafa1cd84+incompatible
-	github.com/json-iterator/go v1.1.11
+	github.com/json-iterator/go v1.1.12
 	github.com/karrick/godirwalk v1.16.1
 	github.com/keegancsmith/rpc v1.3.0
 	github.com/keegancsmith/sqlf v1.1.0
@@ -110,22 +107,21 @@ require (
 	github.com/lib/pq v1.8.0
 	github.com/machinebox/graphql v0.2.2
 	github.com/matryer/is v1.4.0 // indirect
-	github.com/mattn/go-sqlite3 v1.14.8
+	github.com/mattn/go-sqlite3 v1.14.15
 	github.com/mcuadros/go-version v0.0.0-20190830083331-035f6764e8d2
 	github.com/microcosm-cc/bluemonday v1.0.4
 	github.com/mitchellh/mapstructure v1.3.3 // indirect
 	github.com/mschoch/smat v0.2.0 // indirect
 	github.com/mxk/go-flowrate v0.0.0-20140419014527-cca7078d478f
 	github.com/neelance/parallel v0.0.0-20160708114440-4de9ce63d14c
-	github.com/opencontainers/go-digest v1.0.0 // indirect
 	github.com/opentracing-contrib/go-stdlib v1.0.0
 	github.com/opentracing/opentracing-go v1.2.0
 	github.com/peterbourgon/ff v1.7.0
 	github.com/peterhellberg/link v1.1.0
 	github.com/pquerna/cachecontrol v0.0.0-20200819021114-67c6ae64274f // indirect
 	github.com/prometheus/alertmanager v0.21.0
-	github.com/prometheus/client_golang v1.9.0
-	github.com/prometheus/common v0.15.0
+	github.com/prometheus/client_golang v1.11.1
+	github.com/prometheus/common v0.30.0
 	github.com/rainycape/unidecode v0.0.0-20150907023854-cb7f23ec59be
 	github.com/russellhaering/gosaml2 v0.6.0
 	github.com/russellhaering/goxmldsig v1.3.0
@@ -163,7 +159,6 @@ require (
 	github.com/uber/gonduit v0.11.0
 	github.com/uber/jaeger-client-go v2.25.0+incompatible
 	github.com/uber/jaeger-lib v2.2.0+incompatible
-	github.com/willf/bitset v1.1.11 // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
 	github.com/xeipuuv/gojsonschema v1.2.0
 	github.com/xeonx/timeago v1.0.0-rc4
@@ -174,23 +169,20 @@ require (
 	go.uber.org/ratelimit v0.2.0
 	golang.org/x/crypto v0.16.0
 	golang.org/x/net v0.19.0
-	golang.org/x/oauth2 v0.0.0-20210514164344-f6687ab2804c
+	golang.org/x/oauth2 v0.10.0
 	golang.org/x/sync v0.3.0
 	golang.org/x/sys v0.15.0
-	golang.org/x/time v0.0.0-20200630173020-3af7569d3a1e
+	golang.org/x/time v0.3.0
 	golang.org/x/tools v0.13.0
-	google.golang.org/api v0.46.0
-	google.golang.org/genproto v0.0.0-20210517163617-5e0236093d7a
-	google.golang.org/protobuf v1.28.0
+	google.golang.org/api v0.128.0
+	google.golang.org/genproto v0.0.0-20230711160842-782d3b101e98
+	google.golang.org/protobuf v1.31.0
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
-	gopkg.in/square/go-jose.v2 v2.5.1 // indirect
 	gopkg.in/src-d/go-git.v4 v4.13.1
 	gopkg.in/yaml.v2 v2.4.0
-	k8s.io/api v0.17.0
-	k8s.io/apimachinery v0.17.0
-	k8s.io/client-go v0.17.0
-	k8s.io/utils v0.0.0-20200729134348-d5654de09c73 // indirect
-	sigs.k8s.io/yaml v1.2.0 // indirect
+	k8s.io/api v0.22.5
+	k8s.io/apimachinery v0.22.5
+	k8s.io/client-go v0.22.5
 )
 
 // Permanent replace directives
