@@ -95,8 +95,8 @@ require (
 	github.com/hexops/autogold v1.3.0
 	github.com/honeycombio/libhoney-go v1.14.0
 	github.com/inconshreveable/log15 v0.0.0-20201112154412-8562bdadbbac
-	github.com/jackc/pgconn v1.8.0
-	github.com/jackc/pgx/v4 v4.10.0
+	github.com/jackc/pgconn v1.14.3
+	github.com/jackc/pgx/v4 v4.18.2
 	github.com/jmoiron/sqlx v1.2.1-0.20190826204134-d7d95172beb5
 	github.com/joho/godotenv v1.3.0
 	github.com/jordan-wright/email v4.0.1-0.20200824153738-3f5bafa1cd84+incompatible
@@ -107,7 +107,7 @@ require (
 	github.com/keegancsmith/tmpfriend v0.0.0-20180423180255-86e88902a513
 	github.com/kr/text v0.2.0
 	github.com/kylelemons/godebug v1.1.0
-	github.com/lib/pq v1.8.0
+	github.com/lib/pq v1.10.2
 	github.com/machinebox/graphql v0.2.2
 	github.com/matryer/is v1.4.0 // indirect
 	github.com/mattn/go-sqlite3 v1.14.8
@@ -172,11 +172,11 @@ require (
 	go.uber.org/atomic v1.7.0
 	go.uber.org/automaxprocs v1.3.0
 	go.uber.org/ratelimit v0.2.0
-	golang.org/x/crypto v0.17.0
-	golang.org/x/net v0.19.0
+	golang.org/x/crypto v0.20.0
+	golang.org/x/net v0.21.0
 	golang.org/x/oauth2 v0.0.0-20210514164344-f6687ab2804c
 	golang.org/x/sync v0.3.0
-	golang.org/x/sys v0.15.0
+	golang.org/x/sys v0.17.0
 	golang.org/x/time v0.0.0-20200630173020-3af7569d3a1e
 	golang.org/x/tools v0.13.0
 	google.golang.org/api v0.46.0
