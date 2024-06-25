@@ -42,7 +42,7 @@ require (
 	github.com/dnaeon/go-vcr v1.0.1
 	github.com/efritz/pentimento v0.0.0-20190429011147-ade47d831101
 	github.com/evanphx/json-patch v4.9.0+incompatible // indirect
-	github.com/fatih/color v1.11.0
+	github.com/fatih/color v1.16.0
 	github.com/fatih/structs v1.1.0
 	github.com/felixge/fgprof v0.9.1
 	github.com/felixge/httpsnoop v1.0.1
@@ -88,9 +88,8 @@ require (
 	github.com/graph-gophers/graphql-go v0.0.0-20201113091052-beb923fada29
 	github.com/graphql-go/graphql v0.7.9
 	github.com/gregjones/httpcache v0.0.0-20190611155906-901d90724c79
-	github.com/hashicorp/go-hclog v0.14.1 // indirect
 	github.com/hashicorp/go-multierror v1.1.0
-	github.com/hashicorp/go-retryablehttp v0.6.7 // indirect
+	github.com/hashicorp/go-retryablehttp v0.7.7 // indirect
 	github.com/hashicorp/golang-lru v0.5.4
 	github.com/hexops/autogold v1.3.0
 	github.com/honeycombio/libhoney-go v1.14.0
@@ -176,7 +175,7 @@ require (
 	golang.org/x/net v0.23.0
 	golang.org/x/oauth2 v0.0.0-20210514164344-f6687ab2804c
 	golang.org/x/sync v0.3.0
-	golang.org/x/sys v0.18.0
+	golang.org/x/sys v0.20.0
 	golang.org/x/time v0.0.0-20200630173020-3af7569d3a1e
 	golang.org/x/tools v0.13.0
 	google.golang.org/api v0.46.0
